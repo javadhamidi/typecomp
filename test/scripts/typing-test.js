@@ -63,16 +63,15 @@ let wordData = {
 //////////////////////////////////////////
 
 function checkWord(word) {
-  const wlen = word.value.length;
   const wval = word.value.trim(); // how much we have of the current word.
 
   let current = $(".current-word")[0];
-  let currentSubstring = current.innerHTML.substring(0, wlen); // check if we have any typing errors and
+  let currentString = current.innerHTML; // check if we have any typing errors and
   // make sure there is a real word to check
   // https://github.com/anschwa/typing-test/issues/2
 
-  const noMatch = wval !== currentSubstring;
-  const emptyWords = wval === '' || currentSubstring === '';
+  const noMatch = wval !== currentString;
+  const emptyWords = wval === '' || currentString === '';
 
   if (noMatch || emptyWords) {
     current.classList.add("incorrect-word-bg");
@@ -93,6 +92,8 @@ function submitWord(word) {
     current.classList.add("correct-word-c");
     wordData.correct += 1;
   } else {
+    var failAudio = new Audio('res/fail.mp3');
+    failAudio.play();
     current.classList.remove("current-word", "incorrect-word-bg");
     current.classList.add("incorrect-word-c");
     wordData.incorrect += 1;
@@ -189,25 +190,15 @@ function calculateWPM(data) {
 }
 
 function typingTest(e) {
-  // Char:        Key Code:
-  // <space>      32
-  // <backspace>  8
-  // <shift>      16
-  // [A-Z]        65-90
-  // [' "]        222
-  // Get key code of current key pressed.
   e = e || window.event;
   let kcode = e.keyCode;
   let word = $("#typebox")[0]; // check if empty (starts with space)
 
-  if (word.value.match(/^\s/g)) {
+  if (word.value.match(/^\s/g) || word.value == "") {
     word.value = "";
   } else {
     // Only score when timer is on.
     if (isTimer(wordData.seconds)) {
-      checkWord(word); // checks for typing errors while you type
-      // <space> submits words
-
       if (kcode == 32) {
         submitWord(word); // keep track of correct / incorrect words
 
