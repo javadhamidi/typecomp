@@ -88,6 +88,8 @@ function submitWord(word) {
   let current = $(".current-word")[0];
 
   if (checkWord(word)) {
+	var successAudio = new Audio('res/success.mp3');
+    successAudio.play();
     current.classList.remove("current-word");
     current.classList.add("correct-word-c");
     wordData.correct += 1;
@@ -124,6 +126,8 @@ function clearLine() {
   }
 }
 
+var endPlayOnce = false;
+
 function isTimer(seconds) {
   // BUG: page refresh with keyboard triggers onkeyup and starts timer
   // Use restart button to reset timer
@@ -133,8 +137,15 @@ function isTimer(seconds) {
 
   if (one == "1:00") {
     let typingTimer = setInterval(() => {
+      console.log('p');
+      if (time == 4 && !endPlayOnce) {
+        endPlayOnce = true;
+        var endAudio = new Audio('res/end.mp3');
+        endAudio.play();
+      }
       if (time <= 0) {
         clearInterval(typingTimer);
+		calculateWPM(wordData);
       } else {
         time -= 1;
         let timePad = time < 10 ? "0" + time : time; // zero padded
@@ -208,9 +219,6 @@ function typingTest(e) {
       }
 
       wordData.typed += 1; // count each valid character typed
-    } else {
-      // Display typing test results.
-      calculateWPM(wordData);
     }
   }
 }
