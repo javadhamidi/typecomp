@@ -1,11 +1,8 @@
-
-
 // Builds the HTML Table out of myList.
 function buildHtmlTable(selector) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "10.60.101.11:3000/get", false ); // false for synchronous request
-    xmlHttp.send( null );
-    myList = xmlHttp.responseText;
+    myList = JSON.parse(fetch('data.json'));
+    document.getElementById("demo").innerHTML = myArr[0];
+    console.log(myList);
     var columns = addAllColumnHeaders(myList, selector);
 
     for (var i = 0; i < myList.length; i++) {
