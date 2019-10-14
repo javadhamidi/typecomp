@@ -1,19 +1,27 @@
 // Builds the HTML Table out of myList.
 function buildHtmlTable(selector) {
-    myList = JSON.parse(fetch('data.json'));
-    document.getElementById("demo").innerHTML = myArr[0];
-    console.log(myList);
-    var columns = addAllColumnHeaders(myList, selector);
-
-    for (var i = 0; i < myList.length; i++) {
-        var row$ = $('<tr/>');
-        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-        var cellValue = myList[i][columns[colIndex]];
-        if (cellValue == null) cellValue = "";
-        row$.append($('<td/>').html(cellValue));
+    fetch('data.json').then(response => {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
+            return;
         }
-        $(selector).append(row$);
-    }
+
+        response.json().then(data => {
+            console.log(data);
+            myList = data.leaderboard;
+            var columns = addAllColumnHeaders(myList, selector);
+
+            for (var i = 0; i < myList.length; i++) {
+                var row$ = $('<tr/>');
+                for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                    var cellValue = myList[i][columns[colIndex]];
+                    if (cellValue == null) cellValue = "";
+                    row$.append($('<td/>').html(cellValue))
+                }
+                $(selector).append(row$);
+            }
+        }) 
+    })
 }
 
 // Adds a header row to the table and returns the set of columns.
