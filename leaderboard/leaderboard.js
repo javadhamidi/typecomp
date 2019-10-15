@@ -10,29 +10,20 @@ function buildHtmlTable(selector) {
             console.log(data);
             myList = data.leaderboard;
 
-            sortedList = [];
-            lastCPM = 0;
-
-            myList.forEach(element => {
-                if(element[2] < lastCPM) {
-                    sortedList.push(element);
-                } else {
-                    lastCPM = element[2];
-                    sortedList.unshift(element);
-                }
-            });
+            myList.sort(function(a, b) {
+                if(parseFloat(b[1]) - parseFloat(a[1])) {
+		    return parseFloat(b[1]) - parseFloat(a[1]);
+		} else { return parseFloat(b[2]) - parseFloat(a[2]); }
+	    })
 
             let rank = 1;
-            sortedList.forEach(element => {
+            myList.forEach(element => {
                 let row$ = $('<tr/>');
-                row$.append($('<td/>').html(rank++))
-                for (var colIndex = 0; colIndex < 2; colIndex++) {
-                    var cellValue = element[colIndex];
-                    if (cellValue == null) cellValue = "";
-                    row$.append($('<td/>').html(cellValue))
-                }
+                row$.append($('<td/>').html(rank++ + "."))
+                row$.append($('<td/>').html(element[0]))
+                row$.append($('<td align="right"/>').html(element[1]))
                 $(selector).append(row$);
             });
-        }) 
+        })
     })
 }

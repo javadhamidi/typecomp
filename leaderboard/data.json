@@ -14,6 +14,21 @@
       "dhruv",
       "10",
       "100000000000000"
+    ],
+    [
+      "not mitchell",
+      "100",
+      "10000"
+    ],
+    [
+      "thisislowerthanmitchell",
+      "69",
+      "95"
+    ],
+    [
+      "thisishigherthanmitchell",
+      "69",
+      "200"
     ]
   ]
 }
