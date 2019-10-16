@@ -1,34 +1,25 @@
 {
   "leaderboard": [
-    [
-      "archer",
-      "1000000",
-      "1000000000000"
-    ],
-    [
-      "mitchell",
-      "69",
-      "100"
-    ],
-    [
-      "dhruv",
-      "10",
-      "100000000000000"
-    ],
-    [
-      "not mitchell",
-      "100",
-      "10000"
-    ],
-    [
-      "thisislowerthanmitchell",
-      "69",
-      "95"
-    ],
-    [
-      "thisishigherthanmitchell",
-      "69",
-      "200"
-    ]
+    {
+      "name": "mitchell",
+      "cpm": "100",
+      "wpm": "60"
+    },
+    {
+      "name": "archer",
+      "cpm": "50",
+      "wpm": "50"
+    },
+    {
+      "name": "javad",
+      "cpm": "50",
+      "wpm": "100",
+      "remove": ""
+    },
+    {
+      "name": "Antonio",
+      "wpm": "345",
+      "cpm": "60000"
+    }
   ]
 }

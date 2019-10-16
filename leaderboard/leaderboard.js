@@ -1,6 +1,6 @@
 // Builds the HTML Table out of myList.
-function buildHtmlTable(selector) {
-    fetch('data.json').then(response => {
+function buildTable(selector) {
+    fetch('data.json?nocache=' + (new Date()).getTime()).then(response => {
         if (response.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' + response.status);
             return;
@@ -11,19 +11,24 @@ function buildHtmlTable(selector) {
             myList = data.leaderboard;
 
             myList.sort(function(a, b) {
-                if(parseFloat(b[1]) - parseFloat(a[1])) {
-		    return parseFloat(b[1]) - parseFloat(a[1]);
-		} else { return parseFloat(b[2]) - parseFloat(a[2]); }
+                if(parseFloat(b.wpm) - parseFloat(a.wpm)) {
+		    return parseFloat(b.wpm) - parseFloat(a.wpm);
+		} else { return parseFloat(b.cpm) - parseFloat(a.cpm); }
 	    })
 
             let rank = 1;
             myList.forEach(element => {
                 let row$ = $('<tr/>');
                 row$.append($('<td/>').html(rank++ + "."))
-                row$.append($('<td/>').html(element[0]))
-                row$.append($('<td align="right"/>').html(element[1]))
+                row$.append($('<td/>').html(element.name))
+                row$.append($('<td align="right"/>').html(element.wpm))
                 $(selector).append(row$);
             });
         })
     })
+}
+
+function updateTable(selector) {
+  $(selector).empty();
+  buildTable(selector);
 }

@@ -6,8 +6,9 @@
     <script src="../scripts/jquery-3.4.1.js"></script>
     <link href="styles/style.css" rel="stylesheet">
   </head>
-  <body onLoad="buildHtmlTable('#leaderboard')">
-    <table id="leaderboard" cellspacing="10px"></table>
+  <body onLoad="buildTable('#leaderboard')">
+    <button onclick="updateTable('#leaderboard')">Refresh</button>
+    <table id="leaderboard" cellpadding="10px"></table>
     <script src="leaderboard.js"></script>
   </body>
 </html>

@@ -12,23 +12,30 @@ let server = app.listen(3000, function() { console.log('listening') });
 
 
 app.get('/get', function(request, response) { response.send(data.leaderboard) });
-app.get('/update/:info', updateLeaderboard);
-// /update/name,wpm,cpm
+app.get('/update', updateLeaderboard);
+// /update
+//  ?name=xxx
+//  &remove (optional)
+//  &wpm=xxx
+//  &cpm=xxx
 
 
 function updateLeaderboard(request, response) {
-    let info = request.params.info.split(',');
-    data.leaderboard.forEach(function(item, index, object) {    
-        if (item[0] == info[0]) {
-            object.splice(index, 1);
+    let args = request.query;
+    console.log(args);
+
+    data.leaderboard.forEach(function(item, index, object) {
+        if (item.name == args.name) {
+            console.log(object.splice(index, 1));
         }
     });
 
-	
-    data.leaderboard.push(info);
+    if(args.remove == undefined) {
+        data.leaderboard.push(args);
+    }
+
     let reply = 'leaderboard updated';
     fs.writeFile('data.json', JSON.stringify(data, null, 2), function() { console.log(reply) });
     response.send(reply);
 }
-
 
