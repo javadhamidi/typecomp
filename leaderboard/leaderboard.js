@@ -32,3 +32,4 @@ function updateTable(selector) {
   $(selector).empty();
   buildTable(selector);
 }
+

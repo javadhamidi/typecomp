@@ -89,12 +89,12 @@ function submitWord(word) {
   // update current-word and
   // keep track of correct & incorrect words
   let current = $(".current-word")[0];
-
   if (checkWord(word)) {
     successAudio.play();
     current.classList.remove("current-word");
     current.classList.add("correct-word-c");
     wordData.correct += 1;
+    wordData.typed += word.value.trim().length;
   } else {
     failAudio.play();
     current.classList.remove("current-word", "incorrect-word-bg");
@@ -102,9 +102,7 @@ function submitWord(word) {
     wordData.incorrect += 1;
   } // update wordData
 
-
   wordData.total = wordData.correct + wordData.incorrect; // make the next word the new current-word.
-
   current.nextSibling.classList.add("current-word");
 }
 
@@ -144,7 +142,8 @@ function isTimer(seconds) {
       }
       if (time <= 0) {
         clearInterval(typingTimer);
-		calculateWPM(wordData);
+        $("#timer > span")[0].innerHTML = "DONE";
+	calculateWPM(wordData);
       } else {
         time -= 1;
         let timePad = time < 10 ? "0" + time : time; // zero padded
@@ -152,7 +151,7 @@ function isTimer(seconds) {
         $("#timer > span")[0].innerHTML = `0:${timePad}`;
       }
     }, 1000);
-  } else if (one == "0:00") {
+  } else if (one == "DONE") {
     return false;
   }
 
@@ -168,7 +167,7 @@ function calculateWPM(data) {
     typed
   } = data;
   let min = seconds / 60;
-  let wpm = Math.ceil(typed / 5 - incorrect / min);
+  let wpm = Math.ceil(typed / 5);
   let accuracy = Math.ceil(correct / total * 100); // prevent negative wpm from incorrect words
 
   if (wpm < 0) {
@@ -214,8 +213,6 @@ function typingTest(e) {
 
         $("#typebox")[0].value = ""; // clear typebox after each word
       }
-
-      wordData.typed += 1; // count each valid character typed
     }
   }
 }
