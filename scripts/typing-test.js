@@ -496,28 +496,29 @@ function getCookie(cname) {
   return "";
 }
 
-$("#login-input").on("keydown", function(e) {
+$(".login-input").on("keydown", function(e) {
   if(e.keyCode == 13) {
     setName();
   }
 });
 
 async function setName() {
-  let desiredName = $("#login-input").val().split(" ").join("").toSentenceCase();
+  let desiredName = $(".login-input")[0].value.split(" ").join("").toSentenceCase() + " " + $(".login-input")[1].value.split(" ").join("").toSentenceCase();
   let result = await checkName(desiredName);
   if(!result) {
     // Invalid name
-    $("#login-input").parent().effect("shake");
+    $(".login-input").parent().effect("shake");
   } else {
     // Valid name
     setCookie("username", desiredName, 365);
+    fetch(window.location.protocol + "//" + window.location.hostname + ":3000/update?name=" + desiredName + "&wpm=0&cpm=0");
     $("#login-prompt").parent().remove();
     $(".blurred").css({ "filter" : "none", "opacity" : "1", "pointer-events" : "auto" })
   }
 }
 
 async function checkName(name) {
-  if(name == "") { return false; }
+  if(name.split(" ")[0] == "" || name.split(" ")[1] == "") { return false; }
   let response = await fetch(window.location.protocol + "//" + window.location.hostname + ":3000/get");
 
   if (response.status !== 200) {

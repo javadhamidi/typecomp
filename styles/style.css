@@ -162,8 +162,9 @@ footer {
   box-shadow: 0px 0px 10px #141414;
 }
 
-#login-input {
+.login-input {
   padding: 15px;
+  width: 100px;
   margin: 5px 0 22px 0;
   border: none;
   color: #ddd;
