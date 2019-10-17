@@ -119,9 +119,10 @@ main {
 
 footer {
   position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 15px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
   font-size: 0.8em; }
 
 /************************************************/
