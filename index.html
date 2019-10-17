@@ -3,15 +3,22 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Typing Competition</title>
-    <script src="scripts/jquery-3.4.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link href="styles/style.css" rel="stylesheet">
   </head>
   <body onload="addWords()">
-    <header>
+    <header class="blurred">
       <h3>Typing Competition</h3>
     </header>
 
-    <main>
+    <div class="centered"><div id="login-prompt">
+      <input id="login-input" type="text" placeholder="First Name" required><br>
+      <button onclick="setName()">Enter</button>
+    </div></div>
+
+    <main class="blurred">
       <section id="word-section">
         <div class="waiting"">⌛</div>
       </section>
@@ -29,9 +36,9 @@
     <audio id="failAudio" src="res/fail.mp3" preload="auto"></audio>
     <audio id="endAudio" src="res/end.mp3" preload="auto"></audio>
 
-    <footer>
-      Made by the Radio Glenunga Team <br>
-      Based on code by <a href="https://github.com/anschwa/typing-test">Adam Schwartz</a>
+    <footer class="blurred">
+      Made by the Radio Glenunga Team<br>Based on code by Adam Schwartz
+      <a href="/leaderboard"><button style="position: absolute; bottom: 0; right: 0;">Leaderboard</button></a>
     </footer>
     <script src="scripts/typing-test.js"></script>
   </body>

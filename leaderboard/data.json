@@ -1,24 +1,3 @@
 {
-  "leaderboard": [
-    {
-      "name": "Ben",
-      "cpm": "40",
-      "wpm": "51"
-    },
-    {
-      "name": "Juyoung",
-      "cpm": "40",
-      "wpm": "73"
-    },
-    {
-      "name": "Abhishek",
-      "cpm": "40",
-      "wpm": "69"
-    },
-    {
-      "name": "Allan",
-      "cpm": "40",
-      "wpm": "50"
-    }
-  ]
+  "leaderboard": []
 }

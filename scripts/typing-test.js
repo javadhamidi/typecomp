@@ -4,6 +4,10 @@ var endAudio = document.getElementById('endAudio');
 
 let wordList = ["the", "name", "of", "very", "to", "through", "and", "just", "a", "form", "in", "much", "is", "great", "it", "think", "you", "say", "that", "help", "he", "low", "was", "line", "for", "before", "on", "turn", "are", "cause", "with", "same", "as", "mean", "I", "differ", "his", "move", "they", "right", "be", "boy", "at", "old", "one", "too", "have", "does", "this", "tell", "from", "sentence", "or", "set", "had", "three", "by", "want", "hot", "air", "but", "well", "some", "also", "what", "play", "there", "small", "we", "end", "can", "put", "out", "home", "other", "read", "were", "hand", "all", "port", "your", "large", "when", "spell", "up", "add", "use", "even", "word", "land", "how", "here", "said", "must", "an", "big", "each", "high", "she", "such", "which", "follow", "do", "act", "their", "why", "time", "ask", "if", "men", "will", "change", "way", "went", "about", "light", "many", "kind", "then", "off", "them", "need", "would", "house", "write", "picture", "like", "try", "so", "us", "these", "again", "her", "animal", "long", "point", "make", "mother", "thing", "world", "see", "near", "him", "build", "two", "self", "has", "earth", "look", "father", "more", "head", "day", "stand", "could", "own", "go", "page", "come", "should", "did", "country", "my", "found", "sound", "answer", "no", "school", "most", "grow", "number", "study", "who", "still", "over", "learn", "know", "plant", "water", "cover", "than", "food", "call", "sun", "first", "four", "people", "thought", "may", "let", "down", "keep", "side", "eye", "been", "never", "now", "last", "find", "door", "any", "between", "new", "city", "work", "tree", "part", "cross", "take", "since", "get", "hard", "place", "start", "made", "might", "live", "story", "where", "saw", "after", "far", "back", "sea", "little", "draw", "only", "left", "round", "late", "man", "run", "year", "don't", "came", "while", "show", "press", "every", "close", "good", "night", "me", "real", "give", "life", "our", "few", "under", "stop", "open", "ten", "seem", "simple", "together", "several", "next", "vowel", "white", "toward", "children", "war", "begin", "lay", "got", "against", "walk", "pattern", "example", "slow", "ease", "center", "paper", "love", "often", "person", "always", "money", "music", "serve", "those", "appear", "both", "road", "mark", "map", "book", "science", "letter", "rule", "until", "govern", "mile", "pull", "river", "cold", "car", "notice", "feet", "voice", "care", "fall", "second", "power", "group", "town", "carry", "fine", "took", "certain", "rain", "fly", "eat", "unit", "room", "lead", "friend", "cry", "began", "dark", "idea", "machine", "fish", "note", "mountain", "wait", "north", "plan", "once", "figure", "base", "star", "hear", "box", "horse", "noun", "cut", "field", "sure", "rest", "watch", "correct", "color", "able", "face", "pound", "wood", "done", "main", "beauty", "enough", "drive", "plain", "stood", "girl", "contain", "usual", "front", "young", "teach", "ready", "week", "above", "final", "ever", "gave", "red", "green", "list", "oh", "though", "quick", "feel", "develop", "talk", "sleep", "bird", "warm", "soon", "free", "body", "minute", "dog", "strong", "family", "special", "direct", "mind", "pose", "behind", "leave", "clear", "song", "tail", "measure", "produce", "state", "fact", "product", "street", "black", "inch", "short", "lot", "numeral", "nothing", "class", "course", "wind", "stay", "question", "wheel", "happen", "full", "complete", "force", "ship", "blue", "area", "object", "half", "decide", "rock", "surface", "order", "deep", "fire", "moon", "south", "island", "problem", "foot", "piece", "yet", "told", "busy", "knew", "test", "pass", "record", "farm", "boat", "top", "common", "whole", "gold", "king", "possible", "size", "plane", "heard", "age", "best", "dry", "hour", "wonder", "better", "laugh", "true", "thousand", "during", "ago", "hundred", "ran", "am", "check", "remember", "game", "step", "shape", "early", "yes", "hold", "hot", "west", "miss", "ground", "brought", "interest", "heat", "reach", "snow", "fast", "bed", "five", "bring", "sing", "sit", "listen", "perhaps", "six", "fill", "table", "east", "travel", "weight", "less", "language", "morning", "among"];
 
+String.prototype.toSentenceCase = function () {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+
 // Knuth-Fisher-Yates Shuffle
 // http://bost.ocks.org/mike/shuffle/
 
@@ -144,6 +148,7 @@ function isTimer(seconds) {
         clearInterval(typingTimer);
         $("#timer > span")[0].innerHTML = "DONE";
 	calculateWPM(wordData);
+        submitResult(wordData);
       } else {
         time -= 1;
         let timePad = time < 10 ? "0" + time : time; // zero padded
@@ -175,7 +180,7 @@ function calculateWPM(data) {
   } // template strings are pretty cool
 
 
-  let results = `<ul id="results">
+  let results = `<ul id="results" style="padding: 0;">
         <li>WPM: <span class="wpm-value">${wpm}</span></li>
         <li>Accuracy: <span class="wpm-value">${accuracy}%</span></li>
         <li id="results-stats">
@@ -222,3 +227,99 @@ function restartTest() {
   location.reload();
 }
 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+$("#login-input").on("keydown", function(e) {
+  if(e.keyCode == 13) {
+    setName();
+  }
+});
+
+async function setName() {
+  let desiredName = $("#login-input").val().split(" ").join("").toSentenceCase();
+  let result = await checkName(desiredName);
+  if(!result) {
+    // Invalid name
+    $("#login-input").parent().effect("shake");
+  } else {
+    // Valid name
+    setCookie("username", desiredName, 365);
+    $("#login-prompt").parent().remove();
+    $(".blurred").css({ "filter" : "none", "opacity" : "1", "pointer-events" : "auto" })
+  }
+}
+
+async function checkName(name) {
+  if(name == "") { return false; }
+  let response = await fetch(window.location.protocol + "//" + window.location.hostname + ":3000/get");
+
+  if (response.status !== 200) {
+    loginError("Looks like there was a problem.<br>Status Code: " + response.status);
+    return false;
+  }
+
+  let data = await response.json();
+  let found = false;
+  data.forEach(entry => {
+    if(entry.name == name) { found = true; }
+  });
+
+  if(found) {
+    loginError("That name is already taken.");
+    return false;
+  }
+
+  if(data != undefined) { return true; } else { return false; }
+}
+
+function loginError(message) {
+  $(".error-msg").remove();
+  $("#login-prompt").append('<p class="error-msg" style="color: red; font-size: 9pt;">' + message + '</p>').show();
+}
+
+function submitResult(data) {
+  let {
+    seconds,
+    correct,
+    incorrect,
+    total,
+    typed
+  } = data;
+  let min = seconds / 60;
+  let wpm = Math.ceil(typed / 5);
+  let accuracy = Math.ceil(correct / total * 100); // prevent negative wpm from incorrect words
+
+  if (wpm < 0) {
+    wpm = 0;
+  }
+
+  let name = getCookie("username");
+  if(name == "" || name == undefined) { return false; }
+  fetch(window.location.protocol + "//" + window.location.hostname + ":3000/update?name=" + name + "&wpm=" + wpm + "&cpm=" + typed);
+}
+
+if(getCookie("username")) {
+  $("#login-prompt").parent().remove();
+  $(".blurred").css({ "filter" : "none", "opacity" : "1", "pointer-events" : "auto" });
+}
