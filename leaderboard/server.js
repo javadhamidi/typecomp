@@ -23,17 +23,21 @@ app.get('/update', updateLeaderboard);
 
 function updateLeaderboard(request, response) {
     let args = request.query;
+    let match = false;
     let update = false;
     console.log(args);
 
     data.leaderboard.forEach(function(item, index, object) {
-        if (item.name == args.name && (args.remove != undefined || (item.wpm < args.wpm || (item.cpm < args.cpm && item.wpm == args.wpm)))) {
-            console.log(object.splice(index, 1));
-            update = true;
+        if (item.name == args.name) {
+            match = true;
+            if(args.remove != undefined || (item.wpm < args.wpm || (item.cpm < args.cpm && item.wpm == args.wpm))) {
+                console.log(object.splice(index, 1));
+	        update = true;
+            }
         }
     });
 
-    if(args.remove == undefined && update) {
+    if(args.remove == undefined && (update || !match)) {
         data.leaderboard.push(args);
     }
 
