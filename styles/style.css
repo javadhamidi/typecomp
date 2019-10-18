@@ -28,7 +28,7 @@
 }
 
 body {
-  overflow: hidden;
+  outline: 0;
   color: #ddd;
   background-color: #141414;
   font-family: sans-serif;
