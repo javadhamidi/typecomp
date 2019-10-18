@@ -254,26 +254,13 @@ String.prototype.toSentenceCase = function () {
     return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
-// Knuth-Fisher-Yates Shuffle
-// http://bost.ocks.org/mike/shuffle/
-
-function shuffle(array) {
-  let m = array.length,
-      t,
-      i; // While there remain elements to shuffle…
-
-  while (m) {
-    // Pick a remaining element…
-    i = Math.floor(Math.random() * m--); // And swap it with the current element.
-
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-
-  return array;
-} // Add words to word-section
-
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 
 function addWords() {
   // clear existing word-section
