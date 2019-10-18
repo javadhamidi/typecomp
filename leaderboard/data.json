@@ -1,3 +1,19 @@
 {
-  "leaderboard": []
+  "leaderboard": [
+    {
+      "name": "Joe Mama",
+      "wpm": "42",
+      "cpm": "209"
+    },
+    {
+      "name": "Mitchell Kempen",
+      "wpm": "52",
+      "cpm": "257"
+    },
+    {
+      "name": "Joe Thickbottom",
+      "wpm": "34",
+      "cpm": "168"
+    }
+  ]
 }

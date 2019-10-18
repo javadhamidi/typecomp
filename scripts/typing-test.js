@@ -542,7 +542,7 @@ async function checkName(name) {
 
 function loginError(message) {
   $(".error-msg").remove();
-  $("#login-prompt").append('<p class="error-msg" style="color: red; font-size: 9pt;">' + message + '</p>').show();
+  $("#login-prompt").append('<p class="error-msg" style="color: red; font-size: 9pt; margin-bottom: 0;">' + message + '</p>').show();
 }
 
 function submitResult(data) {
