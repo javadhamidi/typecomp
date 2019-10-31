@@ -1,24 +1,9 @@
 {
   "leaderboard": [
     {
-      "name": "Joe Mama",
-      "wpm": "42",
-      "cpm": "209"
-    },
-    {
-      "name": "Joe Thickbottom",
-      "wpm": "34",
-      "cpm": "168"
-    },
-    {
       "name": "Cameron Betts",
       "wpm": "61",
       "cpm": "304"
-    },
-    {
-      "name": "Mitchell Kempen",
-      "wpm": "55",
-      "cpm": "273"
     },
     {
       "name": "Dhruv Joshi",
@@ -26,12 +11,57 @@
       "cpm": "225"
     },
     {
-      "name": "Dutch Boi",
-      "wpm": "46",
-      "cpm": "226"
+      "name": "Jared Lai",
+      "wpm": "76",
+      "cpm": "380"
     },
     {
-      "name": "Ben Dover",
+      "name": "Mitchell Kempen",
+      "wpm": "62",
+      "cpm": "306"
+    },
+    {
+      "name": "Ben Rawlings",
+      "wpm": "80",
+      "cpm": "400"
+    },
+    {
+      "name": "Abhishek Hari",
+      "wpm": "0",
+      "cpm": "0"
+    },
+    {
+      "name": "Shano Sanati",
+      "wpm": "58",
+      "cpm": "290"
+    },
+    {
+      "name": "Archer Gardiner-sheridan",
+      "wpm": "40",
+      "cpm": "198"
+    },
+    {
+      "name": "Nev Sloan",
+      "wpm": "39",
+      "cpm": "194"
+    },
+    {
+      "name": "Javad Hamidi",
+      "wpm": "47",
+      "cpm": "234"
+    },
+    {
+      "name": "Mr T",
+      "wpm": "21",
+      "cpm": "103"
+    },
+    {
+      "name": "Tristan Rollond",
+      "wpm": "45",
+      "cpm": "222"
+    },
+    {
+      "name": "Miss H",
       "wpm": "0",
       "cpm": "0"
     }
