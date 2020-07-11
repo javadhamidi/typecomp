@@ -165,7 +165,7 @@ footer {
 
 .login-input {
   padding: 15px;
-  width: 100px;
+  width: 200px;
   border: none;
   color: #ddd;
   background-color: #1a1a1a;
@@ -185,6 +185,18 @@ footer {
   margin: auto;
 }
 
+
+.nav-button {
+  margin: 10px 0 0 0;
+  color: #ddd;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #222;
+
+  cursor: pointer;
+}
+
 #enter-button {
   transition: all 200ms;
   margin: 10px 0 0 0;
@@ -200,3 +212,16 @@ footer {
   color: white;
   box-shadow: 0px 2px 5px #1e1e1e;
 }
+
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #f4433670;
+  font-size: 12px;
+  color: white;
+  margin: 30px 60px;
+  border-radius: 5px;
+}
+
+.alert-info { background-color: #36def43b; }
