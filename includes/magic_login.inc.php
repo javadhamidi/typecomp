@@ -75,11 +75,12 @@ if (isset($_POST['login-submit'])) {
 		$mail->Username = $config['mailerUsername']; // SMTP username
 		$mail->Password = $config['mailerPassword']; // SMTP password
 
+		$mail->Port = 587;
 		$mail->SMTPSecure = 'tls';   // Enable encryption, 'ssl'
 
 
 		// contact info
-		$mail->setFrom('postmaster@mg.cyanic.me', 'TypeComp');
+		$mail->setFrom($config['mailerUsername'], 'TypeComp');
 		$mail->addAddress($userEmail); // Recipient's email address and optionally a name to identify them
 		
 		// The following is self explanatory

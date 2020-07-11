@@ -1,3 +1,4 @@
+
 ## Typing Competition Platform 
 ### Dependencies
 - PHP, MySQL and Apache. For Windows development XAMPP is recommended (FileZilla, Mercury and Tomcat not needed). Hosted on a LAMP server in production.
@@ -12,7 +13,7 @@ return array(
     'servername' => 'localhost',
     'dBUsername' => 'admin',
     'dBPassword' => '',
-    'dBName'     => 'typecomp',
+    'dBName'     => 'users',
 
     'allowedDomain' => 'example.com',
 
@@ -20,6 +21,7 @@ return array(
     'mailerPassword' => '',
 );
 ```
+> ⚠ Ensure that none of the files in `includes` are publicly accessible on your webserver
 
 ### Acknowledgments
 - This project is an extension of the work of [@mitchpk](https://github.com/mitchpk) and [@archergs](https://github.com/archergs) (and I guess a younger me).
