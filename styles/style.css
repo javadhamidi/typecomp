@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 /************************************************/
@@ -9,6 +9,7 @@
 /* Main Primary color */
 /* Word Colors */
 /************************************************/
+
 /* Mixins / Placeholders */
 #timer, #restart {
   margin: 0.2em;
